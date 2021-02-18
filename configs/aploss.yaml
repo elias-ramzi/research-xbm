@@ -5,7 +5,7 @@
 #
 # This source code is licensed under the LICENSE file in the root directory of this source tree.
 
-NAME: contrastive
+NAME: xbm_aploss
 SAVE_DIR: ~/experiments/sop/xbm_contrastive/weights/
 TB_SAVE_DIR: ~/experiments/sop/xbm_contrastive/logs/
 
@@ -14,11 +14,14 @@ MODEL:
   BACKBONE:
     NAME: resnet50
   HEAD:
-    DIM: 128
+    DIM: 512
     IN_CHANNELS: 2048
 
 LOSSES:
-  NAME: 'contrastive_loss'
+  NAME: 'ap_loss'
+  NQ: 20
+  max: 1
+  min: -1
 
 INPUT:
   MODE: RGB

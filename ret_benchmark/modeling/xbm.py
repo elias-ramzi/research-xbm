@@ -11,7 +11,7 @@ import torch
 class XBM:
     def __init__(self, cfg):
         self.K = cfg.XBM.SIZE
-        self.feats = torch.zeros(self.K, 128).cuda()
+        self.feats = torch.zeros(self.K, cfg.MODEL.HEAD.DIM).cuda()
         self.targets = torch.zeros(self.K, dtype=torch.long).cuda()
         self.ptr = 0
 

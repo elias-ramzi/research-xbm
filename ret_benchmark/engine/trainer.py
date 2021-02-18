@@ -82,7 +82,7 @@ def do_train(
             for k, v in ret_metric.items():
                 log_info[f"e_{k}"] = v
 
-            scheduler.step(log_info[f"R@1"])
+            scheduler.step(mapr_curr)
             log_info["lr"] = optimizer.param_groups[0]["lr"]
             if mapr_curr > best_mapr:
                 best_mapr = mapr_curr
@@ -100,12 +100,14 @@ def do_train(
 
         images = images.to(device)
         targets = targets.to(device)
-        feats = model(images)
+        # feats = model(images)
+        torch.randn(targets.size(0), 128)
 
         if cfg.XBM.ENABLE and iteration > cfg.XBM.START_ITERATION:
             xbm.enqueue_dequeue(feats.detach(), targets.detach())
 
-        loss = criterion(feats, targets, feats, targets)
+        # loss = criterion(feats, targets, feats, targets)
+        loss = torch.tensor(0.)
         log_info["batch_loss"] = loss.item()
 
         if cfg.XBM.ENABLE and iteration > cfg.XBM.START_ITERATION:

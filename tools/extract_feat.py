@@ -39,8 +39,8 @@ def extract(cfg, img_source, model_path=None):
         print("model successfully loaded")
 
     num_gpus = len(os.environ["CUDA_VISIBLE_DEVICES"].split(","))
-    if num_gpus > 1:
-        model = torch.nn.DataParallel(model)
+    # if num_gpus > 1:
+    #     model = torch.nn.DataParallel(model)
 
     transforms = build_transforms(cfg, is_train=False)
 

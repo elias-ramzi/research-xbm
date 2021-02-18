@@ -33,8 +33,8 @@ def train(cfg):
     model = build_model(cfg)
     device = torch.device(cfg.MODEL.DEVICE)
     model.to(device)
-    if len(os.environ["CUDA_VISIBLE_DEVICES"]) > 1:
-        model = torch.nn.DataParallel(model)
+    # if len(os.environ["CUDA_VISIBLE_DEVICES"]) > 1:
+    #     model = torch.nn.DataParallel(model)
 
     criterion = build_loss(cfg)
 
